@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling", "hatch-fancy-pypi-readme"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cachex"
+description = "Simple, Flexible, and Extensible caching utility for modern applications"
+license = "MIT"
+requires-python = ">=3.8,<4.0"
+authors = [
+    { name = "Chris Newville", email = "christopher.newville@raid.dev" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = ["anyio"]
+dynamic = ["readme", "version"]
+
+[project.optional-dependencies]
+mongo = ["motor"]
+redis = ["redis[hiredis]"]
+
+[project.urls]
+Homepage = "https://github.com/raid-newvicx/cachex"
+Source = "https://github.com/raid-newvicx/cachex"
+
+[tool.hatch.version]
+path = "cachex/__version__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/cachex",
+    "/README.md",
+    "/tests",
+]
+
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = "text/markdown"
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.fragments]]
+path = "README.md"
